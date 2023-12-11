@@ -12,9 +12,6 @@ on:
         description: 'Workspace Name'     
         required: true
         type: string
-    secrets:
-      creds:
-        required: true
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -27,7 +24,9 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          creds: ${{secrets.creds}}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true 
       - name: install-extension
         run:  az extension add -n ml -y
