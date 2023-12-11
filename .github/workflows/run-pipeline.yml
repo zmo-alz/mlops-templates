@@ -1,5 +1,4 @@
 name: run-pipeline
-
 on:
   workflow_call:
     inputs:
